@@ -1,0 +1,55 @@
+<!--
+@license
+Copyright (c) 2016 The Jviz Project Authors. All rights reserved.
+The Jviz Project is under the MIT License. See https://github.com/jviz/jviz/blob/dev/LICENSE
+-->
+
+<!-- Import components -->
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../jviz/jviz.html">
+<link rel="import" href="../jviz-styles/jviz-styles.html">
+<link rel="import" href="../jviz-icons/jviz-icons.html">
+
+<!-- Dialog head element -->
+<dom-module id="jviz-dialog-head">
+  <template>
+    <style>
+      /* Host variables */
+      :host
+      {
+        --jviz-dialog-head-padding: 10px;
+      }
+      /* Host style */
+      :host
+      {
+        display: block;
+        width: calc(100% - 2 * var(--jviz-dialog-head-padding));
+        height: 30px;
+        padding: 10px;
+        background-color: var(--jviz-navy-1);
+        color: var(--jviz-white);
+        @apply(--jviz-bold);
+        line-height: 30px;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+      }
+    </style>
+    <!-- Dialog title -->
+    <div id="title" class="title"><content></content></div>
+    <!-- Dialog close button -->
+    <div id="close" class="close">
+      <jviz-icons icon-image="close" icon-color="white" icon-size="30px"></jviz-icons>
+    </div>
+  </template>
+</dom-module>
+
+<!-- Dialog head logic -->
+<script>
+
+//Dialog head object
+var jviz_dialog_head = { is: 'jviz-dialog-head' };
+
+</script>
+
+<!-- Register the dialog element -->
+<script> Polymer(jviz_dialog_head); </script>
