@@ -1,0 +1,45 @@
+<!--
+@license
+Copyright (c) 2016 The Jviz Project Authors. All rights reserved.
+The Jviz Project is under the MIT License. See https://github.com/jviz/jviz/blob/dev/LICENSE
+-->
+
+<!-- Import components -->
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../jviz/jviz.html">
+<link rel="import" href="../jviz-styles/jviz-styles.html">
+
+<!-- Dialog body -->
+<dom-module id="jviz-dialog-body">
+  <template>
+    <style>
+      /* Host variables */
+      :host
+      {
+        --jviz-dialog-body-padding: 10px;
+      }
+      /* Host style */
+      :host
+      {
+        display: block;
+        width: calc(100% - 2 * var(--jviz-dialog-body-padding));
+        background-color: var(--jviz-white);
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+        padding: var(--jviz-dialog-body-padding);
+      }
+    </style>
+    <content></content>
+  </template>
+</dom-module>
+
+<!-- Dialog body logic -->
+<script>
+
+//Dialog body logic
+var jviz_dialog_body = { is: 'jviz-dialog-body' };
+
+</script>
+
+<!-- Register the dialog body -->
+<script> Polymer(jviz_dialog_body); </script>
