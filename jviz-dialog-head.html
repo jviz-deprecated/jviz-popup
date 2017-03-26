@@ -33,12 +33,31 @@ The Jviz Project is under the MIT License. See https://github.com/jviz/jviz/blob
         border-top-left-radius: 5px;
         border-top-right-radius: 5px;
       }
+
+      /* Title */
+      :host .title
+      {
+        display: inline-block;
+        width: calc(100% - 40px);
+        height: 30px;
+        line-height: 30px;
+        float: left;
+      }
+
+      /* Close button */
+      :host .close
+      {
+        display: inline-block;
+        width: 32px;
+        float: right;
+        cursor: pointer;
+      }
     </style>
     <!-- Dialog title -->
     <div id="title" class="title"><content></content></div>
     <!-- Dialog close button -->
     <div id="close" class="close">
-      <jviz-icons icon-image="close" icon-color="white" icon-size="30px"></jviz-icons>
+      <jviz-icons id="close_btn" icon-image="close" icon-color="white" icon-size="30px"></jviz-icons>
     </div>
   </template>
 </dom-module>
