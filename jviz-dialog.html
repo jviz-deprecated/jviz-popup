@@ -7,7 +7,6 @@ The Jviz Project is under the MIT License. See https://github.com/jviz/jviz/blob
 <!-- Import components -->
 <link rel="import" href="../polymer/polymer.html">
 <link rel="import" href="../jviz/jviz.html">
-<link rel="import" href="../jviz-btn/jviz-btn.html">
 <link rel="import" href="../jviz-styles/jviz-styles.html">
 
 <!-- Import dialog elements -->
@@ -47,13 +46,6 @@ The Jviz Project is under the MIT License. See https://github.com/jviz/jviz/blob
       top: var(--jviz-dialog-top);
       left: calc(50% - var(--jviz-dialog-width) / 2);
     }
-
-    /* Buttons style */
-    :host .buttons
-    {
-      display: block;
-      margin-top: 10px;
-    }
   </style>
   <template>
     <!-- Dialog panel -->
@@ -61,14 +53,7 @@ The Jviz Project is under the MIT License. See https://github.com/jviz/jviz/blob
       <!-- Head -->
       <jviz-dialog-head id="head">{{ dialogTitle }}</jviz-dialog-head>
       <!-- Body -->
-      <jviz-dialog-body id="body">
-        <content></content>
-        <!-- Buttons -->
-        <div class="buttons">
-          <jviz-btn btn-color="green">Done</jviz-btn>
-          <jviz-btn btn-color="red">Cancel</jviz-btn>
-        </div>
-      </jviz-dialog-body>
+      <jviz-dialog-body id="body"><content></content></jviz-dialog-body>
     </div>
     <!-- Obfuscator -->
     <jviz-dialog-obfuscator></jviz-dialog-obfuscator>
