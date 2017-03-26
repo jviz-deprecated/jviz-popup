@@ -12,6 +12,22 @@ The Jviz Project is under the MIT License. See https://github.com/jviz/jviz/blob
 <link rel="import" href="./jviz-dialog.html">
 
 <!-- Dialog test element -->
-<jviz-dialog id="test" dialog-title="Test dialog">
+<jviz-dialog id="test" dialog-title="Test dialog" dialog-open>
   This is the dialog content.
 </jviz-dialog>
+
+<!-- Register events -->
+<script>
+  //When dom is ready
+  jviz.dom.ready(function()
+  {
+    //Get the element
+    var el = jviz.dom.id('test');
+
+    //Add the open event
+    el.on('open', function(){ console.log('Dialog open'); });
+
+    //Add the close event
+    el.on('close', function(){ console.log('Dialog closed'); });
+  });
+</script>
