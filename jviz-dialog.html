@@ -1,0 +1,149 @@
+<!--
+@license
+Copyright (c) 2016 The Jviz Project Authors. All rights reserved.
+The Jviz Project is under the MIT License. See https://github.com/jviz/jviz/blob/dev/LICENSE
+-->
+
+<!-- Import components -->
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../jviz/jviz.html">
+<link rel="import" href="../jviz-styles/jviz-styles.html">
+
+<!-- Import dialog elements -->
+<link rel="import" href="./jviz-dialog-head.html">
+<link rel="import" href="./jviz-dialog-body.html">
+<link rel="import" href="./jviz-dialog-obfuscator.html">
+
+<!-- Dialog element -->
+<dom-module id="jviz-dialog">
+  <style>
+    /* Host style */
+    :host
+    {
+      --jviz-dialog-width: 500px;
+      --jviz-dialog-top: 80px;
+    }
+
+    /* Host style */
+    :host
+    {
+      display: none;
+    }
+
+    /* Host open */
+    :host[dialog-open]
+    {
+      display: block;
+    }
+
+    /* Dialog style */
+    :host .panel
+    {
+      display: block;
+      width: var(--jviz-dialog-width);
+      z-index: 3001;
+      position: fixed;
+      top: var(--jviz-dialog-top);
+      left: calc(50% - var(--jviz-dialog-width) / 2);
+    }
+  </style>
+  <template>
+    <!-- Dialog panel -->
+    <div class="panel">
+      <!-- Head -->
+      <jviz-dialog-head id="head">{{ dialogTitle }}</jviz-dialog-head>
+      <!-- Body -->
+      <jviz-dialog-body id="body">
+        <content></content>
+      </jviz-dialog-body>
+    </div>
+    <!-- Obfuscator -->
+    <jviz-dialog-obfuscator></jviz-dialog-obfuscator>
+  </template>
+</dom-module>
+
+<!-- Dialog logic -->
+<script>
+
+//Initialize the dialog object
+var jviz_dialog = { is: 'jviz-dialog' };
+
+//Dialog properties
+jviz_dialog.properties = {};
+jviz_dialog.properties.dialogTitle = { type: String, reflectToAttribute: true };
+jviz_dialog.properties.dialogWidth = { type: String, reflectToAttribute: true, observer: 'update_width', value: '500px' };
+jviz_dialog.properties.dialogTop = { type: String, reflectToAttribute: true, observer: 'update_top', value: '80px' };
+jviz_dialog.properties.dialogOpen = { type: Boolean, reflectToAttribute: true, observer: 'update_open' };
+
+//Events
+jviz_dialog._events = new jviz.commons.events({ });
+
+//Suscribe to an event
+jviz_dialog.on = function(name, handler){ return this._events.add_event(name, handler); };
+
+//Ready method
+jviz_dialog.ready = function()
+{
+  //Save this
+  var self = this;
+
+  //Add the close button event
+  jviz.dom.mouse_down(this.$.head.$.close_btn, function(e)
+  {
+    //Prevent default
+    e.preventDefault();
+
+    //Close the dialog
+    self.hide();
+  });
+};
+
+//Update the dialog width
+jviz_dialog.update_width = function(value)
+{
+  //Update the dialog width variable
+  this.customStyle['--jviz-dialog-width'] = value.toString().replace('px', '').replace('%', '') + 'px';
+
+  //Update the styles
+  this.updateStyles();
+};
+
+//Get the dialog title
+jviz_dialog.get_title = function(){ return this.dialogTitle; };
+
+//Set the dialog title
+jviz_dialog.set_title = function(value){ this.dialogTitle = value.toString(); };
+
+//Update the dialog top position
+jviz_dialog.update_top = function(value)
+{
+  //Update the dialog position top variable
+  this.customStyle['--jviz-dialog-top'] = value.toString().replace('px', '').replace('%', '') + 'px';
+
+  //Update the styles
+  this.updateStyles();
+};
+
+//Update the dialog open value
+jviz_dialog.update_open = function(value)
+{
+  //Check the value
+  return (value === true) ? this._events.emit('open') : this._events.emit('close');
+};
+
+//Open the dialog
+jviz_dialog.show = function(){ this.dialogOpen = true; };
+
+//Show alias
+jviz_dialog.open = function(){ return this.show(); };
+
+//Close the dialog
+jviz_dialog.hide = function(){ this.dialogOpen = false; };
+
+//Hide alias
+jviz_dialog.close = function(){ return this.hide(); };
+
+</script>
+
+<!-- Register the dialog element -->
+<script> Polymer(jviz_dialog); </script>
