@@ -51,7 +51,12 @@ The Jviz Project is under the MIT License. See https://github.com/jviz/jviz/blob
         width: 32px;
         float: right;
         cursor: pointer;
+        opacity: 0.6;
+        transition: opacity 0.3s;
       }
+
+      /* Close button hover */
+      :host .close:hover { opacity: 1.0; }
     </style>
     <!-- Dialog title -->
     <div id="title" class="title"><content></content></div>
