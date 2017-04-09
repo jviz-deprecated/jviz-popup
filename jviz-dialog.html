@@ -51,7 +51,7 @@ The Jviz Project is under the MIT License. See https://github.com/jviz/jviz/blob
     <!-- Dialog panel -->
     <div class="panel">
       <!-- Head -->
-      <jviz-dialog-head id="head">{{ title }}</jviz-dialog-head>
+      <jviz-dialog-head id="head">{{ header }}</jviz-dialog-head>
       <!-- Body -->
       <jviz-dialog-body id="body"><content></content></jviz-dialog-body>
     </div>
@@ -68,7 +68,7 @@ var jviz_dialog = { is: 'jviz-dialog' };
 
 //Dialog properties
 jviz_dialog.properties = {};
-jviz_dialog.properties.title = { type: String, reflectToAttribute: true };
+jviz_dialog.properties.header = { type: String, reflectToAttribute: true };
 jviz_dialog.properties.width = { type: String, reflectToAttribute: true, observer: '_update_width', value: '500px' };
 jviz_dialog.properties.top = { type: String, reflectToAttribute: true, observer: '_update_top', value: '80px' };
 jviz_dialog.properties.visible = { type: Boolean, reflectToAttribute: true, observer: '_update_visible' };
