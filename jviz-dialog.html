@@ -74,7 +74,7 @@ jviz_dialog.properties.top = { type: String, reflectToAttribute: true, observer:
 jviz_dialog.properties.visible = { type: Boolean, reflectToAttribute: true, observer: '_update_visible' };
 
 //Attached method
-jviz_dialog.ready = function()
+jviz_dialog.attached = function()
 {
   //Save this
   var self = this;
@@ -91,7 +91,7 @@ jviz_dialog.ready = function()
 };
 
 //Update the dialog width
-jviz_dialog.update_width = function(value)
+jviz_dialog._update_width = function(value)
 {
   //Update the dialog width variable
   this.customStyle['--jviz-dialog-width'] = value.toString().replace('px', '').replace('%', '') + 'px';
@@ -100,14 +100,8 @@ jviz_dialog.update_width = function(value)
   this.updateStyles();
 };
 
-//Get the dialog title
-jviz_dialog.get_title = function(){ return this.dialogTitle; };
-
-//Set the dialog title
-jviz_dialog.set_title = function(value){ this.dialogTitle = value.toString(); };
-
 //Update the dialog top position
-jviz_dialog.update_top = function(value)
+jviz_dialog._update_top = function(value)
 {
   //Update the dialog position top variable
   this.customStyle['--jviz-dialog-top'] = value.toString().replace('px', '').replace('%', '') + 'px';
@@ -117,25 +111,34 @@ jviz_dialog.update_top = function(value)
 };
 
 //Update the dialog open value
-jviz_dialog.update_open = function(value)
+jviz_dialog._update_visible = function(value)
 {
-  //Check the value
-  return (value === true) ? this._events.emit('open') : this._events.emit('close');
+  //Check if dialog is now visible
+  if(value === true)
+  {
+    //Fire the dialog open event
+    this.fire('open', {}, {});
+  }
+  else
+  {
+    //Fire the dialog close event
+    this.fire('close', {}, {});
+  }
 };
 
 //Open the dialog
-jviz_dialog.show = function(){ this.dialogOpen = true; };
+jviz_dialog.show = function(){ this.visible = true; };
 
 //Show alias
 jviz_dialog.open = function(){ return this.show(); };
 
 //Close the dialog
-jviz_dialog.hide = function(){ this.dialogOpen = false; };
+jviz_dialog.hide = function(){ this.visible = false; };
 
 //Hide alias
 jviz_dialog.close = function(){ return this.hide(); };
 
-</script>
+//Register the dialog element
+Polymer(jviz_dialog);
 
-<!-- Register the dialog element -->
-<script> Polymer(jviz_dialog); </script>
+</script>
