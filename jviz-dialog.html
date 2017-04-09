@@ -31,7 +31,7 @@ The Jviz Project is under the MIT License. See https://github.com/jviz/jviz/blob
     }
 
     /* Host open */
-    :host[dialog-open]
+    :host[visible]
     {
       display: block;
     }
@@ -68,18 +68,12 @@ var jviz_dialog = { is: 'jviz-dialog' };
 
 //Dialog properties
 jviz_dialog.properties = {};
-jviz_dialog.properties.dialogTitle = { type: String, reflectToAttribute: true };
-jviz_dialog.properties.dialogWidth = { type: String, reflectToAttribute: true, observer: 'update_width', value: '500px' };
-jviz_dialog.properties.dialogTop = { type: String, reflectToAttribute: true, observer: 'update_top', value: '80px' };
-jviz_dialog.properties.dialogOpen = { type: Boolean, reflectToAttribute: true, observer: 'update_open' };
+jviz_dialog.properties.title = { type: String, reflectToAttribute: true };
+jviz_dialog.properties.width = { type: String, reflectToAttribute: true, observer: '_update_width', value: '500px' };
+jviz_dialog.properties.top = { type: String, reflectToAttribute: true, observer: '_update_top', value: '80px' };
+jviz_dialog.properties.visible = { type: Boolean, reflectToAttribute: true, observer: '_update_visible' };
 
-//Events
-jviz_dialog._events = new jviz.commons.events({ });
-
-//Suscribe to an event
-jviz_dialog.on = function(name, handler){ return this._events.add_event(name, handler); };
-
-//Ready method
+//Attached method
 jviz_dialog.ready = function()
 {
   //Save this
