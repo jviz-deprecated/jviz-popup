@@ -87,6 +87,9 @@ jviz_dialog.attached = function()
 
     //Close the dialog
     self.hide();
+
+    //Emit the close event
+    self.fire('close', {});
   });
 };
 
