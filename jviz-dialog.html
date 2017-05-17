@@ -71,7 +71,7 @@ jviz_dialog.properties = {};
 jviz_dialog.properties.header = { type: String, reflectToAttribute: true };
 jviz_dialog.properties.width = { type: String, reflectToAttribute: true, observer: '_update_width', value: '500px' };
 jviz_dialog.properties.top = { type: String, reflectToAttribute: true, observer: '_update_top', value: '80px' };
-jviz_dialog.properties.visible = { type: Boolean, reflectToAttribute: true, observer: '_update_visible' };
+jviz_dialog.properties.visible = { type: Boolean, reflectToAttribute: true };
 
 //Attached method
 jviz_dialog.attached = function()
@@ -111,22 +111,6 @@ jviz_dialog._update_top = function(value)
 
   //Update the styles
   this.updateStyles();
-};
-
-//Update the dialog open value
-jviz_dialog._update_visible = function(value)
-{
-  //Check if dialog is now visible
-  if(value === true)
-  {
-    //Fire the dialog open event
-    this.fire('open', {}, {});
-  }
-  else
-  {
-    //Fire the dialog close event
-    this.fire('close', {}, {});
-  }
 };
 
 //Open the dialog
