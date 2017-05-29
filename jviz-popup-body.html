@@ -9,24 +9,24 @@ The Jviz Project is under the MIT License. See https://github.com/jviz/jviz/blob
 <link rel="import" href="../jviz/jviz.html">
 <link rel="import" href="../jviz-styles/jviz-styles.html">
 
-<!-- Dialog body -->
-<dom-module id="jviz-dialog-body">
+<!-- Popup body -->
+<dom-module id="jviz-popup-body">
   <template>
     <style>
       /* Host variables */
       :host
       {
-        --jviz-dialog-body-padding: 10px;
+        --jviz-popup-body-padding: 10px;
       }
       /* Host style */
       :host
       {
         display: block;
-        width: calc(100% - 2 * var(--jviz-dialog-body-padding));
+        width: calc(100% - 2 * var(--jviz-popup-body-padding));
         background-color: var(--jviz-white);
         border-bottom-left-radius: 5px;
         border-bottom-right-radius: 5px;
-        padding: var(--jviz-dialog-body-padding);
+        padding: var(--jviz-popup-body-padding);
       }
     </style>
     <content></content>
@@ -37,9 +37,9 @@ The Jviz Project is under the MIT License. See https://github.com/jviz/jviz/blob
 <script>
 
 //Dialog body logic
-var jviz_dialog_body = { is: 'jviz-dialog-body' };
+var jviz_popup_body = { is: 'jviz-popup-body' };
 
 </script>
 
-<!-- Register the dialog body -->
-<script> Polymer(jviz_dialog_body); </script>
+<!-- Register the popup body -->
+<script> Polymer(jviz_popup_body); </script>
