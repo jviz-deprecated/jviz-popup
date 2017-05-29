@@ -9,19 +9,19 @@ The Jviz Project is under the MIT License. See https://github.com/jviz/jviz/blob
 <link rel="import" href="../jviz/jviz.html">
 <link rel="import" href="../jviz-styles/jviz-styles.html">
 
-<!-- Import dialog elements -->
-<link rel="import" href="./jviz-dialog-head.html">
-<link rel="import" href="./jviz-dialog-body.html">
-<link rel="import" href="./jviz-dialog-obfuscator.html">
+<!-- Import popup elements -->
+<link rel="import" href="./jviz-popup-head.html">
+<link rel="import" href="./jviz-popup-body.html">
+<link rel="import" href="./jviz-popup-obfuscator.html">
 
-<!-- Dialog element -->
-<dom-module id="jviz-dialog">
+<!-- Popup element -->
+<dom-module id="jviz-popup">
   <style>
     /* Host style */
     :host
     {
-      --jviz-dialog-width: 500px;
-      --jviz-dialog-top: 80px;
+      --jviz-popup-width: 500px;
+      --jviz-popup-top: 80px;
     }
 
     /* Host style */
@@ -40,41 +40,41 @@ The Jviz Project is under the MIT License. See https://github.com/jviz/jviz/blob
     :host .panel
     {
       display: block;
-      width: var(--jviz-dialog-width);
+      width: var(--jviz-popup-width);
       z-index: 3001;
       position: fixed;
-      top: var(--jviz-dialog-top);
-      left: calc(50% - var(--jviz-dialog-width) / 2);
+      top: var(--jviz-popup-top);
+      left: calc(50% - var(--jviz-popup-width) / 2);
     }
   </style>
   <template>
     <!-- Dialog panel -->
     <div class="panel">
       <!-- Head -->
-      <jviz-dialog-head id="head">{{ header }}</jviz-dialog-head>
+      <jviz-popup-head id="head">{{ header }}</jviz-popup-head>
       <!-- Body -->
-      <jviz-dialog-body id="body"><content></content></jviz-dialog-body>
+      <jviz-popup-body id="body"><content></content></jviz-popup-body>
     </div>
     <!-- Obfuscator -->
-    <jviz-dialog-obfuscator></jviz-dialog-obfuscator>
+    <jviz-popup-obfuscator></jviz-popup-obfuscator>
   </template>
 </dom-module>
 
 <!-- Dialog logic -->
 <script>
 
-//Initialize the dialog object
-var jviz_dialog = { is: 'jviz-dialog' };
+//Initialize the popup object
+var jviz_popup = { is: 'jviz-popup' };
 
-//Dialog properties
-jviz_dialog.properties = {};
-jviz_dialog.properties.header = { type: String, reflectToAttribute: true };
-jviz_dialog.properties.width = { type: String, reflectToAttribute: true, observer: '_update_width', value: '500px' };
-jviz_dialog.properties.top = { type: String, reflectToAttribute: true, observer: '_update_top', value: '80px' };
-jviz_dialog.properties.visible = { type: Boolean, reflectToAttribute: true };
+//Popup properties
+jviz_popup.properties = {};
+jviz_popup.properties.header = { type: String, reflectToAttribute: true };
+jviz_popup.properties.width = { type: String, reflectToAttribute: true, observer: '_update_width', value: '500px' };
+jviz_popup.properties.top = { type: String, reflectToAttribute: true, observer: '_update_top', value: '80px' };
+jviz_popup.properties.visible = { type: Boolean, reflectToAttribute: true };
 
 //Attached method
-jviz_dialog.attached = function()
+jviz_popup.attached = function()
 {
   //Save this
   var self = this;
@@ -85,7 +85,7 @@ jviz_dialog.attached = function()
     //Prevent default
     e.preventDefault();
 
-    //Close the dialog
+    //Close the popup
     self.hide();
 
     //Emit the close event
@@ -93,39 +93,39 @@ jviz_dialog.attached = function()
   });
 };
 
-//Update the dialog width
-jviz_dialog._update_width = function(value)
+//Update the popup width
+jviz_popup._update_width = function(value)
 {
-  //Update the dialog width variable
-  this.customStyle['--jviz-dialog-width'] = value.toString().replace('px', '').replace('%', '') + 'px';
+  //Update the popup width variable
+  this.customStyle['--jviz-popup-width'] = value.toString().replace('px', '').replace('%', '') + 'px';
 
   //Update the styles
   this.updateStyles();
 };
 
-//Update the dialog top position
-jviz_dialog._update_top = function(value)
+//Update the popup top position
+jviz_popup._update_top = function(value)
 {
-  //Update the dialog position top variable
-  this.customStyle['--jviz-dialog-top'] = value.toString().replace('px', '').replace('%', '') + 'px';
+  //Update the popup position top variable
+  this.customStyle['--jviz-popup-top'] = value.toString().replace('px', '').replace('%', '') + 'px';
 
   //Update the styles
   this.updateStyles();
 };
 
-//Open the dialog
-jviz_dialog.show = function(){ this.visible = true; };
+//Open the popup
+jviz_popup.show = function(){ this.visible = true; };
 
 //Show alias
-jviz_dialog.open = function(){ return this.show(); };
+jviz_popup.open = function(){ return this.show(); };
 
-//Close the dialog
-jviz_dialog.hide = function(){ this.visible = false; };
+//Close the popup
+jviz_popup.hide = function(){ this.visible = false; };
 
 //Hide alias
-jviz_dialog.close = function(){ return this.hide(); };
+jviz_popup.close = function(){ return this.hide(); };
 
-//Register the dialog element
-Polymer(jviz_dialog);
+//Register the popup element
+Polymer(jviz_popup);
 
 </script>
