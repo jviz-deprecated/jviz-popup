@@ -85,11 +85,15 @@ jviz_popup.attached = function()
     //Prevent default
     e.preventDefault();
 
-    //Close the popup
-    self.hide();
-
     //Emit the close event
-    self.fire('close', {});
+    var result = self.fire('close', {}, { cancelable: true });
+
+    //Check if the action has been canceled
+    if(result.defaultPrevented === false)
+    {
+      //Close the popup
+      return self.hide();
+    }
   });
 };
 
