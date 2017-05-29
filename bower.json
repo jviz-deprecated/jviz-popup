@@ -1,6 +1,6 @@
 {
-  "name": "jviz-dialog",
-  "description": "Jviz dialog element",
+  "name": "jviz-popup",
+  "description": "Jviz popup element",
   "ignore": [ "**/.*", "node_modules", "bower_components" ],
   "dependencies":
   {
@@ -11,5 +11,5 @@
   },
   "license": "MIT",
   "authors": [ "Josemi Juanes <josemijuanes@gmail.com>" ],
-  "keywords": [ "jviz", "webcomponents", "jviz-components", "dialog", "popup" ]
+  "keywords": [ "jviz", "webcomponents", "jviz-components", "popup", "popup-window" ]
 }
