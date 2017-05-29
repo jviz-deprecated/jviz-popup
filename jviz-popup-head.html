@@ -10,20 +10,20 @@ The Jviz Project is under the MIT License. See https://github.com/jviz/jviz/blob
 <link rel="import" href="../jviz-styles/jviz-styles.html">
 <link rel="import" href="../jviz-icons/jviz-icons.html">
 
-<!-- Dialog head element -->
-<dom-module id="jviz-dialog-head">
+<!-- Popup head element -->
+<dom-module id="jviz-popup-head">
   <template>
     <style>
       /* Host variables */
       :host
       {
-        --jviz-dialog-head-padding: 10px;
+        --jviz-popup-head-padding: 10px;
       }
       /* Host style */
       :host
       {
         display: block;
-        width: calc(100% - 2 * var(--jviz-dialog-head-padding));
+        width: calc(100% - 2 * var(--jviz-popup-head-padding));
         height: 30px;
         padding: 10px;
         background-color: var(--jviz-navy-1);
@@ -71,9 +71,9 @@ The Jviz Project is under the MIT License. See https://github.com/jviz/jviz/blob
 <script>
 
 //Dialog head object
-var jviz_dialog_head = { is: 'jviz-dialog-head' };
+var jviz_popup_head = { is: 'jviz-popup-head' };
 
 </script>
 
-<!-- Register the dialog element -->
-<script> Polymer(jviz_dialog_head); </script>
+<!-- Register the popup element -->
+<script> Polymer(jviz_popup_head); </script>
